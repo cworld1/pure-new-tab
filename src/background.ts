@@ -27,9 +27,20 @@ class HitokotoExtension {
   }
 
   async fetchHitokoto() {
-    const response = await fetch("https://v1.hitokoto.cn");
-    const { id, hitokoto, from, from_who } = await response.json();
-    this.hitokotoData = { id, hitokoto, from: from_who || from };
+    try {
+      const response = await fetch("https://v1.hitokoto.cn/?encode=json");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      this.hitokotoData = {
+        id: data.id,
+        hitokoto: data.hitokoto,
+        from: data.from_who || data.from,
+      };
+    } catch (error) {
+      console.error("Failed to fetch Hitokoto:", error);
+    }
   }
 }
 
