@@ -12,7 +12,16 @@ main {
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
 }
 
-.container {
+time-component .time {
+  font-size: 4.875rem;
+  line-height: 5.25rem;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #c3cfe2;
+}
+
+hitokoto-component .container {
   opacity: 0.5;
   cursor: pointer;
   transition-property: all;
@@ -20,7 +29,7 @@ main {
   transition-duration: 0.4s;
 }
 
-.hitokoto {
+hitokoto-component .hitokoto {
   display: inline-block;
   background-color: #c3cfe2;
   font-size: 1.875rem;
@@ -29,7 +38,7 @@ main {
   margin-bottom: 1rem;
 }
 
-.from {
+hitokoto-component .from {
   font-size: 0.875rem;
   line-height: 1.25rem;
   padding-left: 0.5rem;
