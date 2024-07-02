@@ -58,6 +58,7 @@ To spend more time coding and less time fiddling with whitespace, this project u
 ## Thanks
 
 - [MiaoMint/hitokoto-new-tab](https://github.com/MiaoMint/hitokoto-new-tab/tree/main)
+- [aklinker1/vite-plugin-web-extension](https://github.com/aklinker1/vite-plugin-web-extension)
 
 ## License
 
