@@ -1,6 +1,7 @@
 {
   "name": "Pure New Tab",
-  "description": "Change new tab to a pure kikotoko.",
+  "short description": "A clean and minimalistic new tab page",
+  "description": "A simple new tab page extension. Aimming to provide a clean and minimalistic ntp for users.",
   "manifest_version": 3,
   "icons": {
     "16": "icon/16.png",
