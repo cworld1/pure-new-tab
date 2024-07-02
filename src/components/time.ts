@@ -1,5 +1,6 @@
 export default class TimeComponent extends HTMLElement {
-  timeElement!: HTMLElement;
+  timeElements!: HTMLElement[];
+  weekElement!: HTMLElement;
 
   constructor() {
     super();
@@ -7,17 +8,36 @@ export default class TimeComponent extends HTMLElement {
 
   updateTime = () => {
     // set time (remove seconds, 24hours)
-    this.timeElement.innerText = new Date().toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
+    this.timeElements.forEach((el) => {
+      el.innerText = new Date().toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      });
     });
   };
 
-  connectedCallback() {
-    this.timeElement = this.querySelector(".time") as HTMLElement;
-    this.updateTime();
+  updateWeek = () => {
+    let weeklist = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    this.weekElement.innerText = weeklist[new Date().getDay()];
+  };
 
+  connectedCallback() {
+    this.timeElements = Array.from(
+      this.querySelectorAll(".time")
+    ) as HTMLElement[];
+    this.weekElement = this.querySelector(".week") as HTMLElement;
+
+    this.updateTime();
     setInterval(this.updateTime, 1000 * 60);
+    this.updateWeek();
   }
 }

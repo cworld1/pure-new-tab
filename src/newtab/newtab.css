@@ -2,24 +2,65 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+:root {
+  --primary-color: #c3cfe2;
+  --foreground-color: #2f2f30;
+  --muted-foreground-color: #565c66;
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
   width: 100vw;
   height: 100vh;
   padding: 4rem;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
 }
 
+/* time component */
+
+time-component {
+  position: relative;
+}
+
 time-component .time {
+  opacity: 0.6;
+  font-family: "Roboto", sans-serif;
   font-size: 4.875rem;
   line-height: 5.25rem;
   font-weight: 700;
   color: transparent;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #c3cfe2;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: var(--primary-color);
 }
+
+time-component .time-main {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.1rem;
+  color: var(--primary-color);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--muted-foreground-color);
+}
+
+time-component .week {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 1.55rem;
+  line-height: 2rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: var(--muted-foreground-color);
+  letter-spacing: 0.3rem;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+}
+
+/* hitokoto component */
 
 hitokoto-component .container {
   opacity: 0.5;
@@ -31,7 +72,8 @@ hitokoto-component .container {
 
 hitokoto-component .hitokoto {
   display: inline-block;
-  background-color: #c3cfe2;
+  background-color: var(--primary-color);
+  color: var(--foreground-color);
   font-size: 1.875rem;
   line-height: 2.25rem;
   padding: 0.75rem 1rem;
@@ -39,8 +81,10 @@ hitokoto-component .hitokoto {
 }
 
 hitokoto-component .from {
+  color: var(--muted-foreground-color);
   font-size: 0.875rem;
   line-height: 1.25rem;
   padding-left: 0.5rem;
+  border-left: 4px solid var(--primary-color);
   border-left: 4px solid #c3cfe2;
 }
