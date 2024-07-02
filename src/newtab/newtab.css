@@ -86,5 +86,15 @@ hitokoto-component .from {
   line-height: 1.25rem;
   padding-left: 0.5rem;
   border-left: 4px solid var(--primary-color);
-  border-left: 4px solid #c3cfe2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #565c66;
+    --foreground-color: #f5f7fa;
+    --muted-foreground-color: #c3cfe2;
+  }
+  main {
+    background: linear-gradient(135deg, #2f2f30, #373b41);
+  }
 }
