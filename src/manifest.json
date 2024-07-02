@@ -11,5 +11,8 @@
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
+  },
+  "chrome_url_overrides": {
+    "newtab": "src/newtab/newtab.html"
   }
 }
