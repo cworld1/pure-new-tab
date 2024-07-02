@@ -6,28 +6,31 @@ browser.runtime.onInstalled.addListener((details) => {
   console.log("Extension installed:", details);
 });
 
-let hitokotoData: Hitokoto;
+class HitokotoExtension {
+  hitokotoData: Hitokoto;
 
-async function fetchHitokoto() {
-  const response = await fetch("https://v1.hitokoto.cn");
-  const { id, hitokoto, from, from_who } = await response.json();
-  hitokotoData = { id, hitokoto, from: from_who || from };
+  constructor() {
+    this.hitokotoData = {} as Hitokoto;
+    // Fetch hitokoto data when extension is loaded
+    this.fetchHitokoto();
+    // Set auto update interval
+    // setInterval(this.fetchHitokoto.bind(this), 3600000);
+
+    browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message === "getHitokoto") {
+        (sendResponse as (response: Hitokoto) => void)(this.hitokotoData);
+
+        this.fetchHitokoto();
+        return true; // keep the channel open for async response
+      }
+    });
+  }
+
+  async fetchHitokoto() {
+    const response = await fetch("https://v1.hitokoto.cn");
+    const { id, hitokoto, from, from_who } = await response.json();
+    this.hitokotoData = { id, hitokoto, from: from_who || from };
+  }
 }
 
-// 初次加载时获取数据
-fetchHitokoto();
-// 每小时更新一次数据
-setInterval(fetchHitokoto, 3600000);
-
-browser.runtime.onInstalled.addListener((details) => {
-  console.log("Extension installed:", details);
-});
-
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message === "getHitokoto") {
-    (sendResponse as (response: Hitokoto) => void)(hitokotoData);
-
-    fetchHitokoto();
-    return true; // 保持消息通道打开
-  }
-});
+new HitokotoExtension();
