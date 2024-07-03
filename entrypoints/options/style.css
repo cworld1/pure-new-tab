@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "MarkaziText";
+  src: url(/font/MarkaziText-Regular.ttf);
+}
+
+* {
+  font-family: "MarkaziText", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: 100vw;
+  height: 100vh;
+  padding: 4rem;
+  background-color: var(--background-color);
+  color: var(--muted-foreground-color);
+}
+
+h1 {
+  font-size: 2.9rem;
+  line-height: 3.25rem;
+  font-weight: 500;
+  color: var(--foreground-color);
+}
+
+h2 {
+  font-size: 1.4rem;
+  line-height: 1.85rem;
+  font-weight: 500;
+  margin: 0.75rem 0;
+}
+
+.card {
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  background-color: var(--muted-background-color);
+}
+
+.card > div {
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  line-height: 1.42rem;
+}
+
+.card > div + div {
+  border-top: 1px solid var(--muted-border-color);
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    margin: 2rem;
+  }
+}
