@@ -1,6 +1,6 @@
 {
   "name": "Pure New Tab",
-  "short description": "A clean and minimalistic new tab page",
+  "{{chrome}}.short description": "A clean and minimalistic new tab page",
   "description": "A simple new tab page extension. Aimming to provide a clean and minimalistic ntp for users.",
   "manifest_version": 3,
   "icons": {
@@ -14,5 +14,11 @@
   },
   "chrome_url_overrides": {
     "newtab": "src/newtab/newtab.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{0bdf54d0-7c91-4477-873a-80412ddc5fa4}",
+      "strict_min_version": "58.0"
+    }
   }
 }
