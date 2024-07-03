@@ -1,37 +1,23 @@
 export default class TimeComponent extends HTMLElement {
-  timeElements: HTMLElement[] = Array.from({ length: 2 }, () =>
-    document.createElement("p")
-  );
-  dateElement: HTMLElement = document.createElement("p");
+  timeElements!: HTMLElement[];
+  dateElement!: HTMLElement;
 
   constructor() {
     super();
-    this.setupElements();
   }
 
-  setupElements() {
-    this.timeElements.forEach((el) => {
-      el.classList.add("time");
-      el.innerHTML = this.formatTime();
-    });
-    this.timeElements[1].classList.add("main");
-    this.dateElement.classList.add("date");
-    this.dateElement.innerHTML = this.formatDate();
-    this.append(...this.timeElements, this.dateElement);
-  }
-
-  formatTime() {
+  formatTime(date: Date) {
     // E.g, 17:13
-    return new Date().toLocaleTimeString("en-US", {
+    return date.toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
     });
   }
 
-  formatDate() {
+  formatDate(date: Date) {
     // E.g. Web, Jul 3
-    return new Date().toLocaleDateString("en-US", {
+    return date.toLocaleDateString("en-US", {
       weekday: "short",
       month: "short",
       day: "numeric",
@@ -39,15 +25,24 @@ export default class TimeComponent extends HTMLElement {
   }
 
   updateTime = () => {
+    const date = new Date();
     this.timeElements.forEach((el) => {
-      el.innerHTML = this.formatTime();
+      el.innerHTML = this.formatTime(date);
     });
-    this.dateElement.innerHTML = this.formatDate();
+    this.dateElement.innerHTML = this.formatDate(date);
+    this.style.opacity = "1";
   };
 
   connectedCallback() {
+    this.innerHTML = `
+      <p class="time"></p>
+      <p class="time main"></p>
+      <p class="date"></p>
+    `;
+    this.timeElements = Array.from(this.querySelectorAll(".time"));
+    this.dateElement = this.querySelector(".date")!;
+
     this.updateTime();
     setInterval(this.updateTime, 1000 * 60);
-    this.style.opacity = "1";
   }
 }

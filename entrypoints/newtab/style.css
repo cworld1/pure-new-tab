@@ -1,11 +1,11 @@
 @font-face {
   font-family: "ChillDuanHeiSong";
-  src: url(/assets/font/ChillDuanHeiSongRegular.otf);
+  src: url(/font/ChillDuanHeiSongRegular.otf);
 }
 
 @font-face {
   font-family: "MarkaziText";
-  src: url(/assets/font/MarkaziText-Regular.ttf);
+  src: url(/font/MarkaziText-Regular.ttf);
 }
 
 * {

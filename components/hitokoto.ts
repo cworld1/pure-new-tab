@@ -1,32 +1,36 @@
+type Hitokoto = {
+  hitokoto: string;
+  from: string;
+};
+
 export default class HitokotoComponent extends HTMLElement {
-  hitokotoElement: HTMLElement = document.createElement("p");
-  fromElement: HTMLElement = document.createElement("p");
+  hitokotoElement!: HTMLElement;
+  fromElement!: HTMLElement;
 
   constructor() {
     super();
-    this.setupElements();
-  }
-
-  setupElements() {
-    this.hitokotoElement.classList.add("hitokoto");
-    this.fromElement.classList.add("from");
-    this.append(this.hitokotoElement, this.fromElement);
   }
 
   async fetchData() {
     try {
       const response = await fetch("https://v1.hitokoto.cn");
       const data = await response.json();
-      return data;
+      return {
+        hitokoto: data.hitokoto,
+        from: data.from ?? data.from_who,
+      } as Hitokoto;
     } catch (error) {
       console.error("Error fetching data:", error);
-      return null;
+      return {
+        hitokoto: "求知若渴，虚怀若谷",
+        from: "Loading failed",
+      };
     }
   }
 
-  displayData(data: { hitokoto: string; from: any; from_who: any }) {
-    this.hitokotoElement.innerText = data.hitokoto ?? "求知若渴，虚怀若谷";
-    this.fromElement.innerText = data.from ?? data.from_who ?? "佚名";
+  displayData(data: Hitokoto) {
+    this.hitokotoElement.innerText = data.hitokoto;
+    this.fromElement.innerText = data.from;
     this.style.opacity = "1";
   }
 
@@ -38,6 +42,13 @@ export default class HitokotoComponent extends HTMLElement {
   }
 
   connectedCallback() {
+    this.innerHTML = `
+      <p class="hitokoto">Loading...</p>
+      <p class="from">...</p>
+    `;
+    this.hitokotoElement = this.querySelector(".hitokoto")!;
+    this.fromElement = this.querySelector(".from")!;
+
     this.loadHitokoto();
     this.addEventListener("click", this.loadHitokoto.bind(this));
   }
