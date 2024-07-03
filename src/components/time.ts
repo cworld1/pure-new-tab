@@ -1,6 +1,6 @@
 export default class TimeComponent extends HTMLElement {
   timeElements!: HTMLElement[];
-  weekElement!: HTMLElement;
+  dateElement!: HTMLElement;
 
   constructor() {
     super();
@@ -17,27 +17,24 @@ export default class TimeComponent extends HTMLElement {
     });
   };
 
-  updateWeek = () => {
-    let weeklist = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    this.weekElement.innerText = weeklist[new Date().getDay()];
+  updatedate = () => {
+    // E.g. Web, Jul 3
+    this.dateElement.innerText = new Date().toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
   };
 
   connectedCallback() {
     this.timeElements = Array.from(
       this.querySelectorAll(".time")
     ) as HTMLElement[];
-    this.weekElement = this.querySelector(".week") as HTMLElement;
+    this.dateElement = this.querySelector(".date") as HTMLElement;
 
     this.updateTime();
     setInterval(this.updateTime, 1000 * 60);
-    this.updateWeek();
+    this.updatedate();
+    this.style.opacity = "1";
   }
 }
