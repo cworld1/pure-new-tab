@@ -11,6 +11,18 @@ export default class HitokotoComponent extends HTMLElement {
     super();
   }
 
+  connectedCallback() {
+    this.innerHTML = `
+      <p class="hitokoto">Loading...</p>
+      <p class="from">...</p>
+    `;
+    this.hitokotoElement = this.querySelector(".hitokoto")!;
+    this.fromElement = this.querySelector(".from")!;
+
+    this.loadHitokoto();
+    this.addEventListener("click", this.loadHitokoto.bind(this));
+  }
+
   async fetchData() {
     try {
       const response = await fetch("https://v1.hitokoto.cn");
@@ -39,17 +51,5 @@ export default class HitokotoComponent extends HTMLElement {
     if (data) {
       this.displayData(data);
     }
-  }
-
-  connectedCallback() {
-    this.innerHTML = `
-      <p class="hitokoto">Loading...</p>
-      <p class="from">...</p>
-    `;
-    this.hitokotoElement = this.querySelector(".hitokoto")!;
-    this.fromElement = this.querySelector(".from")!;
-
-    this.loadHitokoto();
-    this.addEventListener("click", this.loadHitokoto.bind(this));
   }
 }
