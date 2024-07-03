@@ -1,11 +1,11 @@
 @font-face {
   font-family: "ChillDuanHeiSong";
-  src: url(/font/ChillDuanHeiSongRegular.otf);
+  src: url(/assets/font/ChillDuanHeiSongRegular.otf);
 }
 
 @font-face {
   font-family: "MarkaziText";
-  src: url(/font/MarkaziText-Regular.ttf);
+  src: url(/assets/font/MarkaziText-Regular.ttf);
 }
 
 * {
@@ -34,7 +34,7 @@ main {
 
 time-component,
 hitokoto-component {
-  opacity: 0;
+  opacity: 0.3;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.4s;
@@ -58,7 +58,7 @@ time-component .time {
   -webkit-text-stroke-color: var(--primary-color);
 }
 
-time-component .time-main {
+time-component > .time.main {
   position: absolute;
   top: 0.5rem;
   left: 0.1rem;
