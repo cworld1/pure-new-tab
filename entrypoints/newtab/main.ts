@@ -1,4 +1,5 @@
 import "./style.css";
+import "@/assets/global.css";
 import TimeComponent from "@/components/time";
 import HitokotoComponent from "@/components/hitokoto";
 import { applyPrefStyle } from "@/components/utils";

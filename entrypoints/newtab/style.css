@@ -9,17 +9,8 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: "ChillDuanHeiSong", "Trebuchet MS", "Lucida Sans Unicode",
     "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-}
-
-:root {
-  --primary-color: #c3cfe2;
-  --foreground-color: #2f2f30;
-  --muted-foreground-color: #565c66;
 }
 
 main {
@@ -48,7 +39,7 @@ time-component {
 }
 
 time-component .time {
-  opacity: 0.6;
+  opacity: 0.5;
   font-family: "Roboto", sans-serif;
   font-size: 4.875rem;
   line-height: 5.25rem;
@@ -59,6 +50,7 @@ time-component .time {
 }
 
 time-component > .time.main {
+  opacity: 1;
   position: absolute;
   top: 0.5rem;
   left: 0.1rem;
@@ -74,9 +66,16 @@ time-component .date {
   line-height: 2rem;
   font-family: "MarkaziText", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  color: var(--muted-foreground-color);
   letter-spacing: 0.1rem;
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+  background-image: linear-gradient(
+    to right,
+    var(--muted-foreground-color),
+    var(--primary-color)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* hitokoto component */
@@ -106,11 +105,6 @@ hitokoto-component .from {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #565c66;
-    --foreground-color: #f5f7fa;
-    --muted-foreground-color: #c3cfe2;
-  }
   main {
     background: linear-gradient(135deg, #2f2f30, #373b41);
   }
