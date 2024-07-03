@@ -1,9 +1,19 @@
+@font-face {
+  font-family: "ChillDuanHeiSong";
+  src: url(/font/ChillDuanHeiSongRegular.otf);
+}
+
+@font-face {
+  font-family: "MarkaziText";
+  src: url(/font/MarkaziText-Regular.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "ChillDuanHeiSong", "Trebuchet MS", "Lucida Sans Unicode",
+    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 :root {
@@ -22,9 +32,18 @@ main {
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
 }
 
+time-component,
+hitokoto-component {
+  opacity: 0;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.4s;
+}
+
 /* time component */
 
 time-component {
+  opacity: 0;
   position: relative;
 }
 
@@ -48,26 +67,22 @@ time-component .time-main {
   -webkit-text-stroke-color: var(--muted-foreground-color);
 }
 
-time-component .week {
+time-component .date {
   display: inline-block;
   margin-top: 0.75rem;
-  font-size: 1.55rem;
+  font-size: 2.55rem;
   line-height: 2rem;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  font-family: "MarkaziText", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: var(--muted-foreground-color);
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
 }
 
 /* hitokoto component */
 
-hitokoto-component .container {
-  opacity: 0.5;
+hitokoto-component {
   cursor: pointer;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.4s;
 }
 
 hitokoto-component .hitokoto {
@@ -78,14 +93,16 @@ hitokoto-component .hitokoto {
   line-height: 2.25rem;
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
+  letter-spacing: 0.17rem;
 }
 
 hitokoto-component .from {
   color: var(--muted-foreground-color);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: 1.2rem;
+  line-height: 1.65rem;
   padding-left: 0.5rem;
   border-left: 4px solid var(--primary-color);
+  letter-spacing: 0.05rem;
 }
 
 @media (prefers-color-scheme: dark) {
