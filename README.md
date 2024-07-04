@@ -30,26 +30,15 @@ Start the development server:
 
 ```shell
 bun dev
+# bun dev:firefox
 ```
 
 Or build the extension:
 
 ```shell
-bun build
+bun run build
+# bun run build:firefox
 ```
-
-> If you are using firefox, you may need to change the `browser` field in `vite.config.ts`:
->
-> ```ts
-> export default defineConfig({
->   plugins: [
->     webExtension({
->       manifest: generateManifest,
->       browser: "firefox",
->     }),
->   ],
-> });
-> ```
 
 ## Contributions
 
