@@ -59,6 +59,8 @@ To spend more time coding and less time fiddling with whitespace, this project u
 
 - [MiaoMint/hitokoto-new-tab](https://github.com/MiaoMint/hitokoto-new-tab/tree/main)
 - [aklinker1/vite-plugin-web-extension](https://github.com/aklinker1/vite-plugin-web-extension)
+- [wxt-dev/wxt](https://github.com/wxt-dev/wxt)
+- [下一代浏览器插件开发框架 WXT 入门指南](https://segmentfault.com/a/1190000044605548)
 
 ## License
 
