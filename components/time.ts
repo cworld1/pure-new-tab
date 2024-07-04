@@ -1,5 +1,5 @@
 export default class TimeComponent extends HTMLElement {
-  timeElements!: HTMLElement[];
+  timeElement!: HTMLElement;
   dateElement!: HTMLElement;
 
   constructor() {
@@ -8,11 +8,9 @@ export default class TimeComponent extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = `
-      <p class="time"></p>
-      <p class="time main"></p>
-      <p class="date"></p>
-    `;
-    this.timeElements = Array.from(this.querySelectorAll(".time"));
+      <p class="time">00:00</p>
+      <p class="date">Sun, Jan 1</p>`;
+    this.timeElement = this.querySelector(".time")!;
     this.dateElement = this.querySelector(".date")!;
 
     this.updateTime();
@@ -39,9 +37,9 @@ export default class TimeComponent extends HTMLElement {
 
   updateTime = () => {
     const date = new Date();
-    this.timeElements.forEach((el) => {
-      el.innerHTML = this.formatTime(date);
-    });
+
+    this.timeElement.dataset.descr = this.timeElement.innerHTML =
+      this.formatTime(date);
     this.dateElement.innerHTML = this.formatDate(date);
     this.style.opacity = "1";
   };
