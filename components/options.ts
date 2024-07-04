@@ -1,16 +1,19 @@
 import { storage } from "wxt/storage";
+import { downloadJson, uploadJson } from "./utils";
 
 export default class OptionsComponent extends HTMLElement {
   copriltElement!: HTMLInputElement;
   copridkElement!: HTMLInputElement;
   favLiElement!: HTMLTextAreaElement;
   favOpElement!: HTMLInputElement;
+  backupElement!: HTMLButtonElement;
+  restoreElement!: HTMLButtonElement;
 
   constructor() {
     super();
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     this.innerHTML = `
       <h2>Palette</h2>
       <div class="card">
@@ -37,19 +40,31 @@ export default class OptionsComponent extends HTMLElement {
           <input type="checkbox" id="toggle-favorite-link" name="toggle-favorite-link" />
         </div>
       </div>
+      <h2>Backup & Restore</h2>
+      <div class="card">
+        <div>
+          <label>Backup & Restore</label>
+          <div style="display:flex;flex-direction:row;gap:1rem;">
+            <button id="btn-backup">Backup</button>
+            <button id="btn-restore">Restore</button>
+          </div>
+        </div>
+      </div>
       `;
     this.copriltElement = this.querySelector("#color-primary-light")!;
     this.copridkElement = this.querySelector("#color-primary-dark")!;
     this.copridkElement = this.querySelector("#color-primary-dark")!;
     this.favLiElement = this.querySelector("#list-favorite")!;
     this.favOpElement = this.querySelector("#toggle-favorite-link")!;
+    this.backupElement = this.querySelector("#btn-backup")!;
+    this.restoreElement = this.querySelector("#btn-restore")!;
 
-    this.restoreOptions();
+    const options = await storage.getMeta("local:preference");
+    this.restoreOptions(options);
     this.listenOptions();
   }
 
-  async restoreOptions() {
-    const options = await storage.getMeta("local:preference");
+  async restoreOptions(options: Record<string, unknown>) {
     if (options.colorPrimaryLight)
       this.copriltElement.value = options.colorPrimaryLight.toString();
     if (options.colorPrimaryDark)
@@ -61,7 +76,7 @@ export default class OptionsComponent extends HTMLElement {
   }
 
   listenOptions() {
-    this.copriltElement.addEventListener("change", (e) => {
+    this.copriltElement.addEventListener("change", () => {
       storage.setMeta("local:preference", {
         colorPrimaryLight: this.copriltElement.value,
       });
@@ -80,6 +95,22 @@ export default class OptionsComponent extends HTMLElement {
       storage.setMeta("local:preference", {
         favOpen: this.favOpElement.checked,
       });
+    });
+    this.backupElement.addEventListener("click", () => {
+      storage.getMeta("local:preference").then((options) => {
+        downloadJson(options);
+      });
+    });
+    this.restoreElement.addEventListener("click", () => {
+      uploadJson()
+        .then((data) => {
+          // console.log(data);
+          storage.setMeta("local:preference", data);
+          this.restoreOptions(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     });
   }
 }

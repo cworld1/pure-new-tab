@@ -73,7 +73,7 @@ textarea {
   color: var(--muted-foreground-color);
 }
 
-/* button */
+/* switch */
 input[type="checkbox"] {
   appearance: none;
   width: 30px;
@@ -100,6 +100,17 @@ input[type="checkbox"]:checked {
 }
 input[type="checkbox"]:checked:before {
   left: 18px;
+}
+
+/* button */
+button {
+  padding: 0.3rem 0.6rem;
+  border: none;
+  border-radius: var(--card-radius);
+  background-color: var(--primary-color);
+  color: var(--muted-foreground-color);
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
