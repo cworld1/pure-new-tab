@@ -8,12 +8,10 @@
   color-scheme: light dark;
   --primary-color: #c3cfe2;
   --foreground-color: #202124;
-  --muted-foreground-color: #1f1f1f;
+  --muted-foreground-color: #414141;
   --background-color: #ffffff;
-  --muted-background-color: #eceff7;
+  --muted-background-color: #f1f3f8;
   --card-radius: 8px;
-  --card-shadow: color-mix(in srgb, rgb(0, 0, 0) 30%, transparent) 0 1px 2px 0,
-    color-mix(in srgb, rgb(0, 0, 0) 15%, transparent) 0 2px 6px 2px;
 }
 
 @media (prefers-color-scheme: dark) {

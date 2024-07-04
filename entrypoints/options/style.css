@@ -35,7 +35,6 @@ h2 {
 
 .card {
   border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
   background-color: var(--muted-background-color);
 }
 
