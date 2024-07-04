@@ -106,6 +106,64 @@ hitokoto-component .from {
   letter-spacing: 0.05rem;
 }
 
+/* favorite component */
+
+favorite-component .container {
+  position: relative;
+  display: inline-block;
+  border: 3.5px solid var(--primary-color);
+}
+
+favorite-component h2 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 5.2rem;
+  line-height: 2.8rem;
+  transform: translateY(0.1rem);
+  font-weight: 700;
+  letter-spacing: -0.2rem;
+}
+
+favorite-component .container > h2 {
+  display: inline-block;
+  color: var(--primary-color);
+}
+
+favorite-component .fav {
+  background-color: var(--primary-color);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  /* column-gap: 0.2rem; */
+  padding: 0 0.5rem;
+  overflow: hidden;
+  z-index: 1;
+}
+
+favorite-component .fav h2 {
+  z-index: -1;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: var(--background-color);
+  opacity: 0.15;
+}
+
+favorite-component .fav a {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  /* border-radius: 50%; */
+}
+
+favorite-component .fav a svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: var(--muted-foreground-color);
+}
+
 @media (prefers-color-scheme: dark) {
   main {
     background: linear-gradient(135deg, #2f2f30, #373b41);
