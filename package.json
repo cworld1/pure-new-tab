@@ -1,7 +1,7 @@
 {
   "name": "Pure New Tab",
   "description": "A clean and minimalistic new tab page extension",
-  "private": true,
+  "private": false,
   "version": "1.2.0",
   "type": "module",
   "scripts": {
