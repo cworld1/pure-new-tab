@@ -1,7 +1,7 @@
 import "./style.css";
 import "@/assets/global.css";
 import OptionsComponent from "@/components/options";
-import { applyPrefStyle } from "@/components/utils";
+import { applyPrefStyle } from "@/utils/styles";
 
 async function setup(app: HTMLDivElement) {
   app.innerHTML = `

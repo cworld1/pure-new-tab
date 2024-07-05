@@ -1,4 +1,4 @@
-import { setupFavList } from "@/components/utils";
+import { setupFavList } from "@/utils/components";
 
 export default class FavoriteComponent extends HTMLElement {
   listContainer!: HTMLDivElement;
@@ -7,7 +7,7 @@ export default class FavoriteComponent extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     this.innerHTML = `
       <div class="container">
         <h2>Favorite</h2>
@@ -17,6 +17,7 @@ export default class FavoriteComponent extends HTMLElement {
           </div>
       </div>`;
     this.listContainer = this.querySelector(".list")!;
-    setupFavList(this.listContainer);
+    if (await setupFavList(this.listContainer)) this.style.opacity = "1";
+    else this.style.display = "none";
   }
 }

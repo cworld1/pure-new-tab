@@ -3,7 +3,7 @@ import "@/assets/global.css";
 import TimeComponent from "@/components/time";
 import HitokotoComponent from "@/components/hitokoto";
 import FavoriteComponent from "@/components/favorites";
-import { applyPrefStyle } from "@/components/utils";
+import { applyPrefStyle } from "@/utils/styles";
 
 async function setup(app: HTMLDivElement) {
   app.innerHTML = `
