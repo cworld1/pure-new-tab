@@ -24,7 +24,8 @@ main {
 }
 
 time-component,
-hitokoto-component {
+sentence-component,
+favorite-component {
   opacity: 0.3;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -80,13 +81,13 @@ time-component .date {
   color: transparent;
 }
 
-/* hitokoto component */
+/* sentence component */
 
-hitokoto-component {
+sentence-component {
   cursor: pointer;
 }
 
-hitokoto-component .hitokoto {
+sentence-component .sentence {
   display: inline-block;
   background-color: var(--primary-color);
   color: var(--foreground-color);
@@ -97,7 +98,7 @@ hitokoto-component .hitokoto {
   letter-spacing: 0.17rem;
 }
 
-hitokoto-component .from {
+sentence-component .from {
   color: var(--muted-foreground-color);
   font-size: 1.2rem;
   line-height: 1.65rem;
@@ -159,9 +160,10 @@ favorite-component .list a {
   display: flex;
   align-items: center;
   /* border-radius: 50%; */
+  max-width: 5rem;
 }
 
-favorite-component .list a svg {
+favorite-component .list a > * {
   width: 1.7rem;
   height: 1.7rem;
   color: var(--muted-foreground-color);
